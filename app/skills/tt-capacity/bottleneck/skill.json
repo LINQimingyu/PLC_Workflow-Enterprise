@@ -1,0 +1,16 @@
+{
+  "id": "bottleneck",
+  "name": "TT 瓶颈定位",
+  "version": "0.1.0",
+  "status": "candidate",
+  "category": "tt-capacity",
+  "inputs": [
+    "有效 CT、并行数、站点与产出窗口"
+  ],
+  "outputs": [
+    "瓶颈候选及证据等级"
+  ],
+  "execution": "manual_internal",
+  "eval_suite": "evals/test_registry.py",
+  "field_validated": false
+}

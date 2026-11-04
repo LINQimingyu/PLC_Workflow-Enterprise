@@ -1,0 +1,34 @@
+{
+  "id": "sequence",
+  "name": "顺控与联锁",
+  "version": "0.1.0",
+  "category": "engineering",
+  "status": "candidate",
+  "execution": "manual_internal",
+  "areas": [],
+  "equipment_keywords": [],
+  "skills": [
+    "sequence-recovery",
+    "minimal-patch"
+  ],
+  "responsibility": "状态转移表与测试用例；候选与差异/回退清单",
+  "inputs": [
+    "状态机、暂停、复位和异常路径",
+    "确认范围、不可变基线和候选改动"
+  ],
+  "outputs": [
+    "状态转移表与测试用例",
+    "候选与差异/回退清单"
+  ],
+  "tools": [
+    "knowledge.search",
+    "evidence.read"
+  ],
+  "restrictions": [
+    "无原生写入或在线 PLC 控制权限",
+    "仅返回候选与引用",
+    "缺项不得推断为确认事实"
+  ],
+  "field_validated": false,
+  "eval_suite": "evals/test_registry.py"
+}

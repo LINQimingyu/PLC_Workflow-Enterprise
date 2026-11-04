@@ -1,0 +1,16 @@
+{
+  "id": "process-review",
+  "name": "工艺约束审查",
+  "version": "0.1.0",
+  "status": "candidate",
+  "category": "verification",
+  "inputs": [
+    "工艺包来源及确认方案"
+  ],
+  "outputs": [
+    "约束符合性矩阵"
+  ],
+  "execution": "manual_internal",
+  "eval_suite": "evals/test_registry.py",
+  "field_validated": false
+}

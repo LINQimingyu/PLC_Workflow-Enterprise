@@ -1,0 +1,11 @@
+PLC Workflow v2.0
+
+This project includes and extends GXWorks Agent, originally developed by Arienax.
+Original project: https://github.com/Arienax/gxworks-agent
+Pinned upstream source: c3a0f0b1acab12964ccb6004841c8de4b26ad1d2
+Original attribution and notices are preserved in app/NOTICE.
+
+Project-authored source and documentation are distributed under Apache-2.0,
+except where another license is explicitly stated. Contributors retain their
+copyright. Third-party rights and dependency licenses remain separate; see
+app/LICENSE-SCOPE.md and app/THIRD_PARTY_NOTICES.md.

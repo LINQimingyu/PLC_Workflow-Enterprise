@@ -1,0 +1,16 @@
+{
+  "id": "r-source",
+  "name": "R/GX Works3 适配调查",
+  "version": "0.1.0",
+  "status": "candidate",
+  "category": "plc",
+  "inputs": [
+    "R CPU 工程格式与软件版本"
+  ],
+  "outputs": [
+    "适配需求和验证计划"
+  ],
+  "execution": "manual_internal",
+  "eval_suite": "evals/test_registry.py",
+  "field_validated": false
+}

@@ -1,0 +1,16 @@
+{
+  "id": "storage-carrier",
+  "name": "载具储位与供料",
+  "version": "0.1.0",
+  "status": "candidate",
+  "category": "process/fa",
+  "inputs": [
+    "储位、载具 ID、任务及占用记录"
+  ],
+  "outputs": [
+    "储位一致性与恢复检查"
+  ],
+  "execution": "manual_internal",
+  "eval_suite": "evals/test_registry.py",
+  "field_validated": false
+}

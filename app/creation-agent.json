@@ -1,0 +1,12 @@
+{
+  "id": "project-planner",
+  "name": "项目规划 Agent",
+  "version": "0.1.0",
+  "responsibility": "通过需求对话整理项目草案，组合现有专家、Skill、工艺包和阶段任务。",
+  "execution": "configured_api",
+  "skills": ["requirements", "impact-scope"],
+  "outputs": ["可编辑项目草案", "待澄清问题", "专家与 Skill 配置", "工艺包绑定", "阶段任务与依赖"],
+  "restrictions": ["未知事实转为问题", "只选择现有目录能力", "不执行项目专家任务或替代人工审查", "不读取已有项目和原始资料"],
+  "status": "candidate",
+  "field_validated": false
+}

@@ -1,0 +1,221 @@
+# Copyright 2026 Arienax
+# Licensed under the Apache License, Version 2.0. See LICENSE for the license terms.
+
+"""Official MCP SDK server; transport is independent of runtime adaptation."""
+
+from __future__ import annotations
+
+import anyio
+from mcp.server import Server, ServerRequestContext
+from mcp.server.stdio import stdio_server
+from mcp.types import (
+    CallToolRequestParams,
+    CallToolResult,
+    ListToolsResult,
+    PaginatedRequestParams,
+)
+
+from agent_runtime.runtime import ToolRuntime, build_default_tool_runtime
+from shared.project_info import PROJECT_URL, MCP_SERVER_INFO
+
+from .context_provider import ToolContextProvider
+from .tool_adapter import MCPToolAdapter
+
+
+WORKFLOW_INSTRUCTIONS = (
+    f"GXWorks Agent project source and releases: {PROJECT_URL}. "
+    "search_plc_manual, get_generation_context and get_fbd_catalog return one JSON text block with "
+    "data.context_schema_version=3, document, objects and delivery. Follow delivery.next exactly until "
+    "delivery.complete=true, merge all objects, then resolve document $ref pointers, $concat list chunks "
+    "and $merge map chunks. Do not use a partial "
+    "page as complete knowledge. Stale cursors require restarting the same query. Each final MCP response "
+    "is bounded to 6000 estimated tokens and 32 KiB UTF-8; indivisible oversized sources fail explicitly. "
+    "top_k limits only supplementary search; explicit targets and their dependencies remain required. "
+    "Pass language and aspects for targeted manual questions. Corpus presence, requested knowledge "
+    "completeness and delivery are separate; missing runtime knowledge is not permission to web-search. "
+    "get_current_project queries Agent project selection; selection_status=none is normal and does not block inspection. "
+    "For an already-open/imported program, call list_gxworks2_sessions, explicitly choose the matching session_id, "
+    "then read_gxworks2_snapshot. Use its source_ref with get_current_program_info/read_network and static checks. "
+    "When GX Works2 is not running but the exported program CSV and comment CSV are at hand, call "
+    "inspect_gxworks2_csv_files with both documents (data_base64 or path) and an explicit plc_model; it returns the same "
+    "kind of source_ref without an Agent project. "
+    "A source_ref is immutable read-only analysis, not a saved editable version. Never select an unrelated project. "
+    "For native validation, select the actual saved GXW version and call validate_project(native=true). "
+    "Use read_native_device_assignments for current local/global declarations or FB members, compare_native_compiled_code "
+    "for saved-versus-fresh code, and locate_native_code_steps for an explicit resource and step. "
+    "Keep compilation, public_check, backend recheck, diagnostic_projection and inspection outcomes separate. "
+    "A code difference is an observation; a match does not establish execution correspondence. "
+    "For runtime faults, separately call list_simulator_targets and get_simulator_status/read_simulator_devices "
+    "with the returned target_ref. get_diagnostics is static analysis; runtime reads do not prove program correspondence. "
+    "For a generic live timeline, connect_simulator explicitly opens the existing Simulator2-only gateway, then "
+    "start_simulator_trace takes target_ref and config.signals (id, label, address, data_type), sample_ms and duration_ms. "
+    "It returns a Web view URL for all signals; no custom page code is needed. Use get_simulator_trace or stop_simulator_trace "
+    "with view_ref. prepare_simulator_scenario lowers named initial/set/expect values into the existing version-bound test DSL; "
+    "preparing a plan or observing its markers never executes stimulus writes. "
+    "For generation, select/create the actual Agent project and get_generation_context. "
+    "Follow structured next_actions when a precondition is missing. Do not scan source files or hand-write CSV/GXW to bypass the engineering tools. "
+    "For generation or normal edits call get_generation_context with user_requirement containing the user's request. "
+    "Use its generation_instructions, generation_request, confirmed specification and current program: "
+    "these are the same engineering context, output guidance and local RAG used by the built-in API. "
+    "Fresh Ladder requests use Direct generation from the complete original requirement. "
+    "If a real process fact is missing, ask only the necessary question and do not submit a candidate until answered. "
+    "Use search_plc_manual for remaining uncertain model or instruction facts, bound to the actual CPU. "
+    "Device numbering limits, default allocations and configurable allocation conditions are separate; "
+    "a numbering match does not prove current project allocation or permit native device access. "
+    "Design the ladder yourself and submit one full or partial response with create_program_candidate. "
+    "The server uses the API compatibility normalization, structural acceptance and artifact generation, "
+    "without a second model call or an automatic semantic repair loop. "
+    "If a submission fails, report the returned error; do not start an automatic repeated-submission loop. "
+    "Use read_network and patch_program for explicit scoped Debug patches. "
+    "Use get_generation_context for the shared functional discovery, selection policy and source coverage; "
+    "copy its generation_context_id only to a submission tool whose schema accepts that field. "
+    "Discovery and local review do not call a model. "
+    "For FBD, get_generation_context supplies generation_input.device_address_rules and language_rules, "
+    "task-scoped interfaces, source_context, call_bindings, project_options and supported_paths. "
+    "Use these mandatory rules; get_fbd_catalog alone is not a generation context and ST literal syntax is not an FBD substitute. "
+    "get_generation_context defaults catalog_scope to task; get_fbd_catalog defaults to full. "
+    "Use templates for exact additional interfaces and retain missing_templates as missing, without inventing ports. "
+    "Follow output_contract: saved FBD sources expose edit_gxw_project with the exact version_id, "
+    "so ST bodies, interfaces and all affected FBD callers can be checked together in one offline transaction. "
+    "A new graph or a single-graph alternative uses create_fbd_candidate with the supplied parameter_schema. "
+    "Use source-bound ports, declaration tables and direction-qualified IN_OUT endpoints. "
+    "Preserve source_block, block titles/comments and shared-instance execution order when editing. "
+    "New invalid FBD literals are rejected even with save_policy=draft; do not silently convert literals or round TIME. "
+    "Read error.findings for the source, expression, port and local rule returned by source validation. "
+    "Other known new source errors are rejected by checked; retained pre-existing diagnostics are not a compilation pass. "
+    "Missing mandatory rules block generation; do not substitute another CPU or infer support from a template. "
+    "Offline generation produces a GXW and SVG without GX Works2 compilation. "
+    "For FBD import, edit or generate, native_save=true explicitly requests native saving for this call; "
+    "omitting it or setting false uses the offline path regardless of a prior version's save history. "
+    "Use read_fbd_libraries to inspect user-library definitions. To add a library to a saved FBD project, "
+    "use create_fbd_candidate with operation=import_library, library_name and the donor GXW in data_base64; "
+    "this transfers supported ST implementations, interfaces and library types while preserving target caller programs. "
+    "Readable FBD library interfaces do not imply supported FBD implementation transfer. "
+    "For an existing ordinary ST Program use read_st_project and import the saved GXW with "
+    "create_st_candidate(operation=import, program=<exact logical source>, data_base64=...); "
+    "this entry does not synthesize a GXW from ST text. For background edits, first read the existing ST Program, FB "
+    "or FUNCTION and reuse its exact logical source_name with create_st_candidate operation=edit_st_program, "
+    "edit_st_fb, edit_st_function or edit_st_source. Omitted declarations preserve the current declarations; "
+    "supplied declarations replace the complete declaration list. Candidates require confirmation before activation; "
+    "report candidate saving, native compilation and execution separately. Use execute_native_engineering for visible "
+    "edits in one native IDE session, including ordinary ST Programs and explicit existing FBD node/wire actions. "
+    "For persistent foreground editing set execute_native_engineering plan.mode=live and session_action=start. "
+    "Keep its server-issued session_id; continue with session_action=continue and controls.expected_revision from "
+    "get_native_engineering_session. The active context spans calls without saving or reopening between edits. "
+    "get_generation_context follows that active session unless execution_mode=background is explicit. "
+    "Use pause_native_engineering_session to request a stop after the current step; resume pending steps with "
+    "empty commands and controls.resume_pending=true. Rebind only reconciles the same owned process and never "
+    "replays an uncertain edit. End releases the controller and leaves GX open. "
+    "New ST Programs require an explicitly selected existing resource and task. Compile in that session before "
+    "showing compiler-assigned addresses; each edit makes prior compilation and assignments stale. "
+    "Save is an explicit phase boundary that can create an application version; active page changes and GX's "
+    "own compiler Save are reported separately. Reopen is an explicit representative persistence check. "
+    "Report only actual tool results: structural acceptance is distinct from behavior, simulation and native validation. "
+    "Never generate canonical IR or override server-owned project, profile, revision or approval fields. "
+)
+
+
+SERVER_INSTRUCTIONS = WORKFLOW_INSTRUCTIONS + (
+    "GXWorks tools inspect the configured saved PLC project through ToolRuntime. "
+    "create_program_candidate, create_fbd_candidate, create_st_candidate, edit_gxw_project, patch_program and import_current_program_to_gxworks2 return confirmation_required; "
+    "they do not save a version, change active_version_id or import into GX Works2. "
+    "This standalone server cannot approve, commit candidates or execute imports; read-only native snapshots remain available. "
+    "MCP tool approval is not engineering confirmation. "
+    "Report pending actions as pending. Never edit workspace records to bypass these tools. "
+    "No physical PLC writes or low-level desktop controls are exposed."
+)
+
+SERVICE_SERVER_INSTRUCTIONS = WORKFLOW_INSTRUCTIONS + (
+    "GXWorks tools use the running local engineering service's shared ToolRuntime. "
+    "The service turns confirmation_required actions into proposals under the operator's existing approval policy. "
+    "Report the actual proposal status: pending proposals need workbench review; only a saved version receipt proves saving. "
+    "This MCP agent cannot approve pending proposals or grant permissions. "
+    "Do not edit workspace records or call operator HTTP routes to bypass this boundary. "
+    "No physical PLC writes or low-level desktop controls are exposed."
+)
+
+
+LOCAL_SERVER_INSTRUCTIONS = (
+    "GXWorks Agent runs independently inside this MCP process; no Web workbench is required. "
+    "For saved engineering work, use list_projects and select_project explicitly, or create_project with the user's actual "
+    "plc_model and target_mode. Existing-program diagnosis can start with native discovery without any Agent project. "
+    "Never create/select an unrelated project merely to satisfy a read precondition. "
+) + WORKFLOW_INSTRUCTIONS + (
+    "Explicit local generation and edits save validated versions through the shared application transaction. "
+    "A saved result includes version_id; get_project_artifacts returns verified managed output paths. "
+    "A saved behavior draft may remain inactive; preserve its actual save_result and validation limits. "
+    "GX import uses operator-configured execution consent, the bound version and the existing native coordinator. "
+    "execution_consent_required is pending; explain the startup configuration requirement without requesting workbench review. "
+    "get_operation_status reads the actual proposal receipt. A failed or interrupted native result is not a successful import. "
+    "Tool arguments cannot approve pending proposals or change execution permissions. "
+    "No physical PLC writes or low-level desktop controls are exposed."
+)
+
+
+def create_server(
+    context_provider: ToolContextProvider, runtime: ToolRuntime | None = None
+) -> Server:
+    adapter = MCPToolAdapter(
+        runtime if runtime is not None else build_default_tool_runtime(), context_provider
+    )
+    return _create_adapter_server(adapter, SERVER_INSTRUCTIONS)
+
+
+def create_service_server(client, project_id, version_id=None) -> Server:
+    from .service_client import ServiceMCPToolAdapter
+
+    return _create_adapter_server(ServiceMCPToolAdapter(client, project_id, version_id), SERVICE_SERVER_INSTRUCTIONS)
+
+
+def create_local_server(session) -> Server:
+    from .local_adapter import LocalMCPToolAdapter
+
+    return _create_adapter_server(LocalMCPToolAdapter(session), LOCAL_SERVER_INSTRUCTIONS)
+
+
+def _create_adapter_server(adapter, instructions):
+    limiter = anyio.CapacityLimiter(1)
+    query_limiter = anyio.CapacityLimiter(4)
+    cached_controls = {'get_operation_status', 'get_native_engineering_session',
+                       'pause_native_engineering_session'}
+
+    async def list_tools(
+        ctx: ServerRequestContext, params: PaginatedRequestParams | None
+    ) -> ListToolsResult:
+        return ListToolsResult(tools=adapter.list_tools())
+
+    async def call_tool(
+        ctx: ServerRequestContext, params: CallToolRequestParams
+    ) -> CallToolResult:
+        return await anyio.to_thread.run_sync(
+            adapter.call_tool, params.name, params.arguments, str(ctx.request_id),
+            limiter=query_limiter if params.name in cached_controls else limiter,
+        )
+
+    return Server(
+        MCP_SERVER_INFO["name"], version=MCP_SERVER_INFO["version"], instructions=instructions,
+        title=MCP_SERVER_INFO["title"], website_url=MCP_SERVER_INFO["websiteUrl"],
+        description=MCP_SERVER_INFO["description"],
+        on_list_tools=list_tools, on_call_tool=call_tool,
+    )
+
+
+async def serve_stdio(context_provider: ToolContextProvider) -> None:
+    # SDK v2 owns UTF-8 framing and diverts stray Python/native stdout to stderr.
+    async with stdio_server() as (read_stream, write_stream):
+        server = create_server(context_provider)
+        await server.run(
+            read_stream, write_stream, server.create_initialization_options()
+        )
+
+
+async def serve_service_stdio(client, project_id, version_id=None) -> None:
+    async with stdio_server() as (read_stream, write_stream):
+        server = create_service_server(client, project_id, version_id)
+        await server.run(read_stream, write_stream, server.create_initialization_options())
+
+
+async def serve_local_stdio(session) -> None:
+    async with stdio_server() as (read_stream, write_stream):
+        server = create_local_server(session)
+        await server.run(read_stream, write_stream, server.create_initialization_options())

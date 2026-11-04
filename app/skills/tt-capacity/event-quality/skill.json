@@ -1,0 +1,16 @@
+{
+  "id": "event-quality",
+  "name": "TT 日志质量核查",
+  "version": "0.1.0",
+  "status": "candidate",
+  "category": "tt-capacity",
+  "inputs": [
+    "含事件 ID、时区、站点、玻璃和时间的日志"
+  ],
+  "outputs": [
+    "质量结果和拒算原因"
+  ],
+  "execution": "manual_internal",
+  "eval_suite": "evals/test_registry.py",
+  "field_validated": false
+}

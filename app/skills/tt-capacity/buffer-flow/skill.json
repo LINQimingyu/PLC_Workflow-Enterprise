@@ -1,0 +1,16 @@
+{
+  "id": "buffer-flow",
+  "name": "WIP 缓存阻塞与缺料",
+  "version": "0.1.0",
+  "status": "candidate",
+  "category": "tt-capacity",
+  "inputs": [
+    "缓存占用、状态及上下游事件"
+  ],
+  "outputs": [
+    "缓存方案和数据缺项"
+  ],
+  "execution": "manual_internal",
+  "eval_suite": "evals/test_registry.py",
+  "field_validated": false
+}

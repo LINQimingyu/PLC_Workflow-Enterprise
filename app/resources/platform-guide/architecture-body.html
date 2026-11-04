@@ -1,0 +1,34 @@
+<main class="guide-content" id="main-content">
+ <h1 class="guide-title">整体架构总览</h1><p class="intro">从上往下阅读：岗位负责业务决定，业务控制服务把关，LangGraph 组织执行。</p>
+ <section class="layer"><h2 class="layer-head"><span>01</span>责任与入口</h2><div class="cards">
+  <article class="unit"><h3>实名工厂岗位</h3><p>项目负责人安排工作，工程师执行，独立审核人审查。总控可以由人担任，也可以委托 Agent 处理允许授权的工作。</p></article>
+  <article class="unit"><h3>企业工作台</h3><p>受理项目、澄清需求、上传原件、分配模块、查看任务和提交业务决定。</p></article>
+ </div></section>
+ <div class="connector"><span class="arrow" aria-hidden="true">↓</span><span>提交业务请求与实名决定</span></div>
+ <section class="layer authority"><h2 class="layer-head"><span>02</span>业务控制服务</h2><p>统一校验身份、项目权限、任务合同、制品版本、门禁与风险，控制授权、状态迁移和工程发布。</p><p class="muted">人工批准先形成业务记录，再恢复流程。Agent 不能批准自身成果、扩大授权或完成风险豁免。</p></section>
+ <div class="connector"><span class="arrow" aria-hidden="true">↓</span><span>合同与授权有效，才允许执行</span></div>
+ <section class="layer runtime"><h2 class="layer-head"><span>03</span>流程编排与模块执行</h2><div class="cards">
+  <article class="unit"><h3>LangGraph 主图与模块子图</h3><p>管理任务推进、人工等待、工具循环和检查点恢复；执行前后重新检查授权与版本。</p><p class="relation">按已授权的模块合同安排执行。</p></article>
+  <article class="unit"><h3>工作模块与可选 Agent</h3><p>模块定义工作范围、交付和审核要求。需要独立判断时加载 Agent；也可以由工程师完成。</p><p class="relation">按任务需要加载，不固定 Agent 数量。</p></article>
+ </div></section>
+ <div class="connector"><span class="arrow" aria-hidden="true">↓</span><span>按合同加载方法、调用获授权工具</span></div>
+ <section class="layer support"><h2 class="layer-head"><span>04</span>方法与工具</h2><div class="cards three">
+  <article class="unit"><p class="relation">模块加载</p><h3>Skill</h3><p>描述工作步骤、依据、判断规则与停止条件。Skill 本身不授予权限。</p></article>
+  <article class="unit"><p class="relation">LangGraph 工具循环</p><h3>受控工具与 MCP</h3><p>执行解析、计算、检索和格式校验。跨客户端复用的工具可通过 MCP 提供。</p></article>
+  <article class="unit"><p class="relation">业务服务授予工具任务</p><h3>独立厂商执行器</h3><p>在已确认的 Windows／GX 环境中操作原生工程，保存对应版本与原始日志。</p></article>
+ </div></section>
+ <h2 class="section-title">贯穿各层的数据与证据</h2><div class="cards three">
+  <article class="unit"><h3>PostgreSQL</h3><p>保存业务记录、实名权限、审批和 LangGraph 检查点。</p></article>
+  <article class="unit"><h3>版本化制品存储</h3><p>保存原件、候选、差异和验证日志，以版本与 SHA-256 绑定。</p></article>
+  <article class="unit"><h3>双层知识治理</h3><p>个人参考与生产知识分别管理，引用时检查权限、适用范围及撤回状态。</p></article>
+ </div>
+ <h2 class="section-title">五类业务模块</h2><div class="module-list">
+  <article><h3>PLC／HMI 工程</h3><p>程序、变量与 I/O、候选代码、点表、差异、回退和测试。</p></article>
+  <article><h3>故障诊断与维护</h3><p>故障假设、证据与反证、排查、维修和复验。</p></article>
+  <article><h3>电气设计与改造</h3><p>计算、选型、BOM、连接关系、图纸草稿和施工影响。</p></article>
+  <article><h3>工艺与产能改善</h3><p>FDC、TT／CT、瓶颈、动作优化、工艺窗口和改善验证。</p></article>
+  <article><h3>能耗与运行优化</h3><p>能耗基线、单位合格品能耗、待机损失及优化候选方案。</p></article>
+ </div>
+ <h2 class="section-title">共用工程保障</h2><p>工程审查与风险管理 · 真实工具验证 · 文档与工程交付 · 知识治理</p>
+ <aside class="notice"><strong>当前运行边界</strong>首期使用离线资料。本机真实 GX 编译、现场实施与效果观察仍需分别取得证据，不能由软件测试或说明图替代。</aside>
+</main>

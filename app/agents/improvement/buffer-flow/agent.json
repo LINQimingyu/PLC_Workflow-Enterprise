@@ -1,0 +1,35 @@
+{
+  "id": "buffer-flow",
+  "name": "缓存与物流分析",
+  "version": "0.1.0",
+  "category": "improvement",
+  "status": "candidate",
+  "execution": "manual_internal",
+  "areas": [],
+  "equipment_keywords": [],
+  "skills": [
+    "buffer-flow",
+    "simpy-scenarios"
+  ],
+  "responsibility": "缓存方案和数据缺项；模型校准和情景比较",
+  "inputs": [
+    "缓存占用、状态及上下游事件",
+    "串行路线、并行机、有限缓存和实测产出"
+  ],
+  "outputs": [
+    "缓存方案和数据缺项",
+    "模型校准和情景比较"
+  ],
+  "tools": [
+    "knowledge.search",
+    "evidence.read",
+    "tt.simulate"
+  ],
+  "restrictions": [
+    "无原生写入或在线 PLC 控制权限",
+    "仅返回候选与引用",
+    "缺项不得推断为确认事实"
+  ],
+  "field_validated": false,
+  "eval_suite": "evals/test_registry.py"
+}

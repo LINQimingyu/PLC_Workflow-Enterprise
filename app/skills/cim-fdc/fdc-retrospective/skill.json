@@ -1,0 +1,16 @@
+{
+  "id": "fdc-retrospective",
+  "name": "FDC 历史前后对照",
+  "version": "0.1.0",
+  "status": "candidate",
+  "category": "cim-fdc",
+  "inputs": [
+    "历史输入输出及确认范围"
+  ],
+  "outputs": [
+    "历史差异报告与证据缺口"
+  ],
+  "execution": "manual_internal",
+  "eval_suite": "evals/test_registry.py",
+  "field_validated": false
+}

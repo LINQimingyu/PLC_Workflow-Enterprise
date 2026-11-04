@@ -1,0 +1,105 @@
+{
+  "schema": "component-inventory-1",
+  "components": [
+    {
+      "name": "langgraph",
+      "version": "1.2.19",
+      "license": "MIT",
+      "source": "installed package METADATA",
+      "status": "implementation_candidate",
+      "organizational_production_admission": "pending",
+      "network": "Only configured internal model endpoint may receive business requests; tracing disabled",
+      "permissions": "application process; no live PLC control"
+    },
+    {
+      "name": "langgraph-checkpoint-postgres",
+      "version": "3.2.0",
+      "license": "MIT",
+      "source": "installed package METADATA",
+      "status": "implementation_candidate",
+      "organizational_production_admission": "pending",
+      "network": "Only configured internal model endpoint may receive business requests; tracing disabled",
+      "permissions": "application process; no live PLC control"
+    },
+    {
+      "name": "psycopg",
+      "version": "3.3.7",
+      "license": "LGPL-3.0-only",
+      "source": "installed package METADATA",
+      "status": "implementation_candidate",
+      "organizational_production_admission": "pending",
+      "network": "Only configured internal model endpoint may receive business requests; tracing disabled",
+      "permissions": "application process; no live PLC control"
+    },
+    {
+      "name": "psycopg-binary",
+      "version": "3.3.7",
+      "license": "LGPL-3.0-only",
+      "source": "installed package METADATA",
+      "status": "implementation_candidate",
+      "organizational_production_admission": "pending",
+      "network": "Only configured internal model endpoint may receive business requests; tracing disabled",
+      "permissions": "application process; no live PLC control"
+    },
+    {
+      "name": "argon2-cffi",
+      "version": "25.1.0",
+      "license": "MIT",
+      "source": "installed package METADATA",
+      "status": "implementation_candidate",
+      "organizational_production_admission": "pending",
+      "network": "Only configured internal model endpoint may receive business requests; tracing disabled",
+      "permissions": "application process; no live PLC control"
+    },
+    {
+      "name": "fastapi",
+      "version": "0.141.1",
+      "license": "MIT",
+      "source": "installed package METADATA",
+      "status": "implementation_candidate",
+      "organizational_production_admission": "pending",
+      "network": "Only configured internal model endpoint may receive business requests; tracing disabled",
+      "permissions": "application process; no live PLC control"
+    },
+    {
+      "name": "simpy",
+      "version": "4.1.2",
+      "license": "MIT",
+      "source": "installed package METADATA",
+      "status": "implementation_candidate",
+      "organizational_production_admission": "pending",
+      "network": "Only configured internal model endpoint may receive business requests; tracing disabled",
+      "permissions": "application process; no live PLC control"
+    },
+    {
+      "name": "openai",
+      "version": "2.43.0",
+      "license": "Apache-2.0",
+      "source": "installed package METADATA",
+      "status": "implementation_candidate",
+      "organizational_production_admission": "pending",
+      "network": "Only configured internal model endpoint may receive business requests; tracing disabled",
+      "permissions": "application process; no live PLC control"
+    },
+    {
+      "name": "PostgreSQL Windows binaries",
+      "version": "18.6-1",
+      "license": "PostgreSQL License",
+      "source": "https://get.enterprisedb.com/postgresql/postgresql-18.6-1-windows-x64-binaries.zip",
+      "sha256": "fbe23da234ee31547bf8a36d29dfd81e82b849df2d2b78d2eecb43d360252f8c",
+      "status": "local_development_validated",
+      "organizational_production_admission": "pending",
+      "network": "127.0.0.1:5544 only",
+      "permissions": "project-local cluster; ep_app non-superuser"
+    }
+  ],
+  "runtime_lock": "app/requirements/enterprise-win-py313.lock.txt",
+  "business_component_admission_api": "/api/projects/{id}/components",
+  "note": "Source-only package does not redistribute installed dependency binaries.",
+  "container_manifests_verified": {
+    "node:22.22.0-bookworm-slim": "sha256:dd9d21971ec4395903fa6143c2b9267d048ae01ca6d3ea96f16cb30df6187d94",
+    "python:3.13.9-slim-bookworm": "sha256:b685a4fa58bb19d1814d78a1ec0f0208f351452724f78b20212c984d6e124a34",
+    "postgres:18.6": "sha256:3a4264520e121176619f54ff867d12774bc81e95e7b84db58d63bccdb6144b81"
+  },
+  "container_build_or_run_validated": false
+}

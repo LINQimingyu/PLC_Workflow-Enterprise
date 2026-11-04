@@ -1,0 +1,16 @@
+{
+  "id": "benefit-compare",
+  "name": "改善效果实测对照",
+  "version": "0.1.0",
+  "status": "candidate",
+  "category": "tt-capacity",
+  "inputs": [
+    "同口径改前改后良品产出及实际投入"
+  ],
+  "outputs": [
+    "实测对照与收益等级"
+  ],
+  "execution": "manual_internal",
+  "eval_suite": "evals/test_registry.py",
+  "field_validated": false
+}

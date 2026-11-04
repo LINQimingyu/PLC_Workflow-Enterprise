@@ -1,0 +1,34 @@
+{
+  "id": "dispatch",
+  "name": "搬送调度改善",
+  "version": "0.1.0",
+  "category": "improvement",
+  "status": "candidate",
+  "execution": "manual_internal",
+  "areas": [],
+  "equipment_keywords": [],
+  "skills": [
+    "dispatch",
+    "glass-handshake"
+  ],
+  "responsibility": "调度方案与约束；握手时序与恢复用例",
+  "inputs": [
+    "搬送任务、路径、优先级与时间",
+    "上下游请求/许可/占有/完成信号"
+  ],
+  "outputs": [
+    "调度方案与约束",
+    "握手时序与恢复用例"
+  ],
+  "tools": [
+    "knowledge.search",
+    "evidence.read"
+  ],
+  "restrictions": [
+    "无原生写入或在线 PLC 控制权限",
+    "仅返回候选与引用",
+    "缺项不得推断为确认事实"
+  ],
+  "field_validated": false,
+  "eval_suite": "evals/test_registry.py"
+}

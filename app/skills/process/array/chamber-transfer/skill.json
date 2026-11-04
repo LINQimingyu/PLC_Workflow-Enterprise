@@ -1,0 +1,16 @@
+{
+  "id": "chamber-transfer",
+  "name": "真空腔体与传输条件",
+  "version": "0.1.0",
+  "status": "candidate",
+  "category": "process/array",
+  "inputs": [
+    "腔体状态、阀门、真空及传输约束"
+  ],
+  "outputs": [
+    "腔体状态联锁矩阵"
+  ],
+  "execution": "manual_internal",
+  "eval_suite": "evals/test_registry.py",
+  "field_validated": false
+}

@@ -1,0 +1,16 @@
+{
+  "id": "requirements",
+  "name": "需求与验收抽取",
+  "version": "0.1.0",
+  "status": "candidate",
+  "category": "common",
+  "inputs": [
+    "CIM 需求单或改善目标"
+  ],
+  "outputs": [
+    "需求矩阵、验收项、缺项"
+  ],
+  "execution": "manual_internal",
+  "eval_suite": "evals/test_registry.py",
+  "field_validated": false
+}

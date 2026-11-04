@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "scope": "Source-checked control subset; no native execution certification. Entries enable only the named CPU and execution conditions.",
+  "native_simulator": {
+    "sources": [{"manual_number": "SH082395ENG", "revision": "J", "sections": ["9.2", "10.11", "GetCpuType"], "sdk": "MX Component ACT/Include/ActDefine.cs"},
+      {"manual_number": "SH080008", "revision": "AB", "section": "11.1 Model name read", "pdf_page": 169},
+      {"manual_number": "JY997D45801", "revision": "H", "section": "7.6.3", "pdf_page": 90}],
+    "unit_type": 48,
+    "target_simulator": 0,
+    "targets": {
+      "FX3U/FX3UC": {"cpu_type": 520, "model_code": 243, "monitor": "fx_run"},
+      "FX3G/FX3GC": {"cpu_type": 521, "model_code": 244, "monitor": "fx_run"},
+      "FX3S": {"cpu_type": 522, "model_code": 245, "monitor": "fx_run"},
+      "Q00U": {"cpu_type": 129, "model_code": 609, "monitor": "ql_run"},
+      "Q03UDV": {"cpu_type": 209, "model_code": 870, "monitor": "ql_run"},
+      "Q06UDEH": {"cpu_type": 146, "model_code": 618, "monitor": "ql_run"},
+      "L02/L02-P": {"cpu_type": 161, "model_code": 1345, "monitor": "ql_run"},
+      "L06/L06-P": {"cpu_type": 165, "model_code": 1348, "monitor": "ql_run"},
+      "L26/L26-P": {"cpu_type": 164, "model_code": 1349, "monitor": "ql_run"}
+    },
+    "monitors": {
+      "fx_run": {"device": "M8000", "mask": 1, "value": 1, "reset_initial_phase": "before_reset",
+        "read_devices": {"M8000": "bit", "M8067": "bit", "D8067": "word"},
+        "sources": [{"manual_number": "JY997D16601", "revision": "R", "section": "Special auxiliary relays and special data registers"}]},
+      "ql_run": {"device": "SD203", "mask": 15, "value": 0, "reset_initial_phase": "after_reset",
+        "read_devices": {"SD203": "word", "SM0": "bit", "SD0": "word"},
+        "sources": [{"manual_number": "SH080483ENG", "revision": "BC", "pdf_page": 546}, {"manual_number": "SH080890ENG", "revision": "AJ", "pdf_page": 372}]}
+    }
+  },
+  "reviewed_groups": [
+    {
+      "models": [
+        "FX5S",
+        "FX5UJ",
+        "FX5UC"
+      ],
+      "facts": {
+        "scope": "Source-checked Boolean Ladder control only. No timer/counter, first-scan relay, transfer or native runtime inheritance from FX5U.",
+        "control": {
+          "forms": [
+            "LD",
+            "LDI",
+            "AND",
+            "ANI",
+            "OR",
+            "ORI",
+            "ANB",
+            "ORB",
+            "MPS",
+            "MRD",
+            "MPP",
+            "OUT"
+          ],
+          "immediate_memory_writes": true,
+          "disabled_coil": false,
+          "shared_condition": "saved_accumulator",
+          "sources": [
+            {
+              "manual_number": "JY997D55801",
+              "revision": "AB",
+              "pdf_pages": [
+                20,
+                37,
+                118,
+                119,
+                120,
+                127,
+                128,
+                129,
+                130,
+                134,
+                135
+              ],
+              "printed_pages": [
+                18,
+                35,
+                116,
+                117,
+                118,
+                125,
+                126,
+                127,
+                128,
+                132,
+                133
+              ],
+              "reviewed_models": [
+                "FX5S",
+                "FX5UJ",
+                "FX5UC"
+              ],
+              "review_basis": "Explicit supported-CPU badges on instruction pages and processing/operation-result tables; no family inheritance."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "models": ["FX1S", "FX1N", "FX2N", "FX3S", "FX2C"],
+      "facts": {
+        "scope": "Reviewed Boolean control and direct-word transfers only; no startup, timer, counter, hardware I/O or native runtime certification.",
+        "control": {"forms": ["LD", "LDI", "AND", "ANI", "OR", "ORI", "ORB", "ANB", "MPS", "MRD", "MPP", "OUT", "SET", "RST", "MOV", "DMOV"], "immediate_memory_writes": true, "disabled_coil": false, "disabled_set_reset": "retain", "shared_condition": "saved_accumulator", "sources": [{"manual_number": "JY997D34701", "revision": "M", "pdf_pages": [55, 57, 65, 66, 75, 76, 85, 86, 141, 142, 143]}]},
+        "transfers": {"MOV": 16, "DMOV": 32}
+      }
+    },
+    {
+      "models": ["Q03UDE", "Q03UDV", "Q12PH", "Q12PRH", "L02", "L26-BT"],
+      "facts": {
+        "scope": "Reviewed Boolean control and direct-word transfers only; no startup, timer, counter, hardware I/O or native runtime certification.",
+        "control": {"forms": ["LD", "LDI", "AND", "ANI", "OR", "ORI", "ORB", "ANB", "MPS", "MRD", "MPP", "OUT", "SET", "RST", "MOV", "DMOV"], "immediate_memory_writes": true, "disabled_coil": false, "disabled_set_reset": "retain", "shared_condition": "saved_accumulator", "sources": [{"manual_number": "SH080809ENG", "revision": "X", "pdf_pages": [4, 134, 135, 138, 144, 145, 152, 162, 164, 301, 302]}]},
+        "transfers": {"MOV": 16, "DMOV": 32}
+      }
+    }
+  ],
+  "FX3U": {
+    "first_scan": {"devices": ["M8002"], "execution_type": "scan", "conditions": {"program_type": "scan"}, "source": {"manual_number": "JY997D16601", "revision": "R", "pdf_page": 867}},
+    "always_on": ["M8000"],
+    "control": {"forms": ["LD", "LDI", "AND", "ANI", "OR", "ORI", "ORB", "ANB", "MPS", "MRD", "MPP", "OUT", "SET", "RST", "MOV", "ZRST"], "immediate_memory_writes": true, "disabled_coil": false, "disabled_set_reset": "retain", "shared_condition": "saved_accumulator", "sources": [{"manual_number": "JY997D16601", "revision": "R", "pdf_pages": [172, 184, 192, 204, 205, 216, 218, 251, 318, 319]}]},
+    "timers": {"OUT": [{"first": 0, "last": 199, "unit_ms": 100, "reset_on_disable": true}, {"first": 200, "last": 245, "unit_ms": 10, "reset_on_disable": true}, {"first": 256, "last": 511, "unit_ms": 1, "reset_on_disable": true}], "source": {"manual_number": "JY997D16601", "revision": "R", "pdf_page": 100}},
+    "counter": {"first": 0, "last": 99, "bits": 16, "trigger": "rising", "holds_on_disable": true, "stops_at_preset": true, "source": {"manual_number": "JY997D16601", "revision": "R", "pdf_pages": [105, 106]}}
+  },
+  "FX5U": {
+    "first_scan": {"devices": ["SM402", "SM8002"], "execution_type": "scan", "conditions": {"program_type": "scan", "initial_execution_program": false}, "source": {"manual_number": "JY997D55401", "revision": "AG", "pdf_pages": [34, 843]}},
+    "always_on": ["SM400", "SM8000"],
+    "control": {"forms": ["LD", "LDI", "AND", "ANI", "OR", "ORI", "ORB", "ANB", "MPS", "MRD", "MPP", "OUT", "SET", "RST", "MOV", "ZRST"], "immediate_memory_writes": true, "disabled_coil": false, "disabled_set_reset": "retain", "shared_condition": "saved_accumulator", "sources": [{"manual_number": "JY997D55801", "revision": "AB", "pdf_pages": [119, 129, 134, 135, 145, 146, 147, 148, 319, 320, 321, 401, 402]}]},
+    "timers": {"OUT": [{"first": 0, "last": 1023, "unit_ms": 100, "reset_on_disable": true}], "OUTH": [{"first": 0, "last": 1023, "unit_ms": 10, "reset_on_disable": true}], "OUTHS": [{"first": 0, "last": 1023, "unit_ms": 1, "reset_on_disable": true}], "source": {"manual_number": "JY997D55801", "revision": "AB", "pdf_pages": [136, 137], "conditions": ["ordinary T device", "executed once per scan", "time trace supplied separately; no scan-count conversion"]}}
+  },
+  "FX1N": {"scope": "Direct-word MOV/DMOV and typed Boolean guards only; no startup, timer, counter, hardware I/O or native runtime certification.", "transfers": {"MOV": 16, "DMOV": 32}, "sources": [{"manual_number": "JY997D34701", "revision": "M", "pdf_pages": [141, 142, 143]}]},
+  "L02": {"scope": "Direct-word MOV/DMOV and typed Boolean guards only; no startup, timer, counter, hardware I/O or native runtime certification.", "transfers": {"MOV": 16, "DMOV": 32}, "sources": [{"manual_number": "SH080783ENG", "revision": "P", "pdf_pages": [245, 246]}]}
+}

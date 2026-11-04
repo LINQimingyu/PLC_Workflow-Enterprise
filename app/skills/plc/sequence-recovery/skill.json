@@ -1,0 +1,16 @@
+{
+  "id": "sequence-recovery",
+  "name": "顺控联锁及恢复",
+  "version": "0.1.0",
+  "status": "candidate",
+  "category": "plc",
+  "inputs": [
+    "状态机、暂停、复位和异常路径"
+  ],
+  "outputs": [
+    "状态转移表与测试用例"
+  ],
+  "execution": "manual_internal",
+  "eval_suite": "evals/test_registry.py",
+  "field_validated": false
+}

@@ -1,0 +1,16 @@
+{
+  "id": "recipe-consistency",
+  "name": "配方与流转一致性",
+  "version": "0.1.0",
+  "status": "candidate",
+  "category": "process",
+  "inputs": [
+    "配方版本、产品和设备流转记录"
+  ],
+  "outputs": [
+    "配方与追溯问题清单"
+  ],
+  "execution": "manual_internal",
+  "eval_suite": "evals/test_registry.py",
+  "field_validated": false
+}

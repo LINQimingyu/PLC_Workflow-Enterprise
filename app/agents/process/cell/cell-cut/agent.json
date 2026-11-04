@@ -1,0 +1,40 @@
+{
+  "id": "cell-cut",
+  "name": "CELL 切割研磨",
+  "version": "0.1.0",
+  "category": "process",
+  "status": "candidate",
+  "execution": "manual_internal",
+  "areas": [
+    "CELL"
+  ],
+  "equipment_keywords": [
+    "切割",
+    "研磨",
+    "cut"
+  ],
+  "skills": [
+    "cut-flow",
+    "recipe-consistency"
+  ],
+  "responsibility": "流转和追溯矩阵；配方与追溯问题清单",
+  "inputs": [
+    "母玻璃/子片关系、切割和清洗步骤",
+    "配方版本、产品和设备流转记录"
+  ],
+  "outputs": [
+    "流转和追溯矩阵",
+    "配方与追溯问题清单"
+  ],
+  "tools": [
+    "knowledge.search",
+    "evidence.read"
+  ],
+  "restrictions": [
+    "无原生写入或在线 PLC 控制权限",
+    "仅返回候选与引用",
+    "缺项不得推断为确认事实"
+  ],
+  "field_validated": false,
+  "eval_suite": "evals/test_registry.py"
+}

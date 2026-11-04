@@ -1,0 +1,16 @@
+{
+  "id": "cf-photo",
+  "name": "CF 曝光显影",
+  "version": "0.1.0",
+  "status": "candidate",
+  "category": "process/cf",
+  "inputs": [
+    "对位曝光显影步骤及配方"
+  ],
+  "outputs": [
+    "层次配方与流程检查"
+  ],
+  "execution": "manual_internal",
+  "eval_suite": "evals/test_registry.py",
+  "field_validated": false
+}

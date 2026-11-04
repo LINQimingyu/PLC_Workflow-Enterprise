@@ -1,0 +1,16 @@
+{
+  "id": "simpy-scenarios",
+  "name": "SimPy 基线与情景仿真",
+  "version": "0.1.0",
+  "status": "candidate",
+  "category": "tt-capacity",
+  "inputs": [
+    "串行路线、并行机、有限缓存和实测产出"
+  ],
+  "outputs": [
+    "模型校准和情景比较"
+  ],
+  "execution": "manual_internal",
+  "eval_suite": "evals/test_registry.py",
+  "field_validated": false
+}

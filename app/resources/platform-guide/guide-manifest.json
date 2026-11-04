@@ -1,0 +1,11 @@
+{
+  "schema": "local-guide-1",
+  "presentation": "reflowable-reading-2",
+  "files": {
+    "index.html": "fb72a91b0ac295abc7db187908e9ee27d164e92a7116c1898cb5d22bc8741f50",
+    "architecture.html": "7fd7fc2ca244de12cf63aef4f20e4a129bf1c3fcc64fa8759655c51baf731968",
+    "workflow.html": "f5ed0b2606fb2493a738765a683aa364cf15d0c21601a52a04cad3330a2ceada",
+    "architecture-note.html": "487a999a0bf9dc82bccfd9bf01bd492369cca311d2dcf05e94d916654c0f2cbb",
+    "workflow-note.html": "a84082f0c22175b71f8e1ef3657d265c99bd09fb69ec04d6701eb3c1f48f89fb"
+  }
+}

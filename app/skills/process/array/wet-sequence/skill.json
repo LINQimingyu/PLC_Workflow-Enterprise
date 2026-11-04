@@ -1,0 +1,16 @@
+{
+  "id": "wet-sequence",
+  "name": "ARRAY 湿制程顺控",
+  "version": "0.1.0",
+  "status": "candidate",
+  "category": "process/array",
+  "inputs": [
+    "湿制程设备流程及化学品/排液约束"
+  ],
+  "outputs": [
+    "顺控和异常恢复审查"
+  ],
+  "execution": "manual_internal",
+  "eval_suite": "evals/test_registry.py",
+  "field_validated": false
+}

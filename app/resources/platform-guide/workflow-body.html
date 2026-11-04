@@ -1,0 +1,20 @@
+<main class="guide-content" id="main-content">
+ <h1 class="guide-title">工程交付工作流</h1><p class="intro">按编号从上往下执行。返修说明放在对应验证步骤内，避免回路线穿过其他任务。</p>
+ <ol class="workflow" aria-label="工程交付主线">
+  <li class="step"><span class="step-number">01</span><div><h2>确认需求与工程基线</h2><div class="step-meta"><span>负责人：项目总控、工程师</span><span class="gate">输入锁</span></div><p>核实设备、CPU、固件、IDE、库版本、原件摘要和操作权限；明确目标、范围、联锁及验收条件。</p><p><strong>交付：</strong>工具链基线、需求规格、原件与缺项清单。</p><p><strong>继续条件：</strong>资料齐备并获批准；缺项时停在此步，补齐后重新确认。</p></div></li>
+  <li class="step"><span class="step-number">02</span><div><h2>审查并批准工程方案</h2><div class="step-meta"><span>负责人：工程师、独立审核人</span><span class="gate">方案锁</span></div><p>确定解决方案、关键 I/O 与联锁、验证覆盖、施工影响及回退条件，建立模块合同并明确授权。</p><p><strong>交付：</strong>工程方案、模块任务合同及实名批准记录。</p></div></li>
+  <li class="step"><span class="step-number">03</span><div><h2>形成候选工程与测试包</h2><div class="step-meta"><span>执行者：工程师或获授权 Agent</span></div><p>按批准方案处理隔离副本，保存候选版本、差异、测试及回退文件；不覆盖原件。</p><p><strong>交付：</strong>候选程序与测试包，或对应业务模块的交付包。</p></div></li>
+  <li class="step"><span class="step-number">04</span><div><h2>静态检查、真实编译与仿真</h2><div class="step-meta"><span>负责人：验证工程师、独立审核人</span></div><div class="checks">
+   <div class="check"><strong>4.1 静态检查</strong>核对逻辑、I/O、数据类型、地址冲突及范围影响。</div>
+   <div class="check"><strong>4.2 真实编译</strong>使用确认的厂商工具链，绑定精确候选与原始日志。</div>
+   <div class="check"><strong>4.3 仿真与测试</strong>验证正常、异常、恢复及已批准的覆盖范围。</div>
+  </div><p><strong>继续条件：</strong>各阶段证据分别记录；缺少验证环境时保持未验证。</p>
+  <aside class="repair"><h3>程序编译失败：受限修复</h3><ol><li>保存失败证据，提出补丁建议。</li><li>独立人工确认本轮补丁。</li><li>在隔离副本应用，生成新版本。</li><li>对新版本重新编译，按影响补做相关验证。</li></ol><p><strong>停止条件：</strong>连续三轮程序修复失败，停止并由人工接管。工具环境故障另行记录；结果不明的操作不自动重复。</p></aside>
+  </div></li>
+  <li class="step"><span class="step-number">05</span><div><h2>核对工程证据并关闭风险</h2><div class="step-meta"><span>负责人：独立审核人、项目负责人</span><span class="gate">工程锁 · 风险锁</span></div><p>核对候选、工具链、执行结果与原始日志的绑定关系。严重和高风险必须关闭，其他风险按规则处置。</p><p><strong>交付：</strong>审查结果、风险处置及适用的验证证据。</p></div></li>
+  <li class="step"><span class="step-number">06</span><div><h2>人工终审与锁定工程包</h2><div class="step-meta"><span>负责人：具备终审权限的实名人员</span><span class="gate">发布锁</span></div><p>批准精确版本与工程包摘要，从锁定制品生成交付包；导出时重新校验摘要。</p><p><strong>交付：</strong>工程发布清单、锁定工程包和终审记录。内容变更后重新确定验证与审批范围。</p></div></li>
+  <li class="step"><span class="step-number">07</span><div><h2>人工实施、现场接受与效果观察</h2><div class="step-meta"><span>负责人：获授权实施人员、现场接受人员</span></div><p>在授权窗口实施，保存现场核对记录；按真实基线观察效果。</p><p><strong>分别记录：</strong>工程包发布、人工实施、现场接受、效果观察。仿真通过不能代替现场接受。</p></div></li>
+ </ol>
+ <section class="layer independent"><h2 class="layer-head">独立分支：知识沉淀与发布</h2><p>可按适用范围沉淀为个人参考。生产知识需完成脱敏、领域审核、样板回归及两名不同实名审核人批准，经过知识锁后发布。</p><p>知识治理独立于工程发布；个人经验不自动升级为企业规范。</p></section>
+ <aside class="notice"><strong>每次继续都重新校验</strong>授权、版本或资料撤回状态发生变化时，旧批准与旧证据不能直接沿用。纯分析项目按分析交付规则验收，不填写成已完成工程验证。</aside>
+</main>

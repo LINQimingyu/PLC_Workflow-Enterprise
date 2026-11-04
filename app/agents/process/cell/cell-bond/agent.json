@@ -1,0 +1,41 @@
+{
+  "id": "cell-bond",
+  "name": "CELL 成盒与贴合",
+  "version": "0.1.0",
+  "category": "process",
+  "status": "candidate",
+  "execution": "manual_internal",
+  "areas": [
+    "CELL"
+  ],
+  "equipment_keywords": [
+    "成盒",
+    "贴合",
+    "点胶",
+    "bond"
+  ],
+  "skills": [
+    "cell-bond",
+    "process-map"
+  ],
+  "responsibility": "成盒步骤与联锁审查；步骤状态矩阵",
+  "inputs": [
+    "实际成盒路线、对位点胶贴合顺序",
+    "已确认路线、工艺步骤和设备状态"
+  ],
+  "outputs": [
+    "成盒步骤与联锁审查",
+    "步骤状态矩阵"
+  ],
+  "tools": [
+    "knowledge.search",
+    "evidence.read"
+  ],
+  "restrictions": [
+    "无原生写入或在线 PLC 控制权限",
+    "仅返回候选与引用",
+    "缺项不得推断为确认事实"
+  ],
+  "field_validated": false,
+  "eval_suite": "evals/test_registry.py"
+}

@@ -1,0 +1,16 @@
+{
+  "id": "cut-flow",
+  "name": "CELL 切割研磨流转",
+  "version": "0.1.0",
+  "status": "candidate",
+  "category": "process/cell",
+  "inputs": [
+    "母玻璃/子片关系、切割和清洗步骤"
+  ],
+  "outputs": [
+    "流转和追溯矩阵"
+  ],
+  "execution": "manual_internal",
+  "eval_suite": "evals/test_registry.py",
+  "field_validated": false
+}

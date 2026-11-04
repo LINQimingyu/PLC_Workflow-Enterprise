@@ -1,0 +1,16 @@
+{
+  "id": "q-source",
+  "name": "Q/GX Works2 原程序分析",
+  "version": "0.1.0",
+  "status": "candidate",
+  "category": "plc",
+  "inputs": [
+    "Q CPU 原生工程或可选 CSV"
+  ],
+  "outputs": [
+    "能力矩阵、读写引用和缺项"
+  ],
+  "execution": "manual_internal",
+  "eval_suite": "evals/test_registry.py",
+  "field_validated": false
+}

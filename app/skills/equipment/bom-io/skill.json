@@ -1,0 +1,16 @@
+{
+  "id": "bom-io",
+  "name": "BOM 与 I/O 施工影响",
+  "version": "0.1.0",
+  "status": "candidate",
+  "category": "equipment",
+  "inputs": [
+    "点表、接线图、规格和报价"
+  ],
+  "outputs": [
+    "BOM 与施工影响"
+  ],
+  "execution": "manual_internal",
+  "eval_suite": "evals/test_registry.py",
+  "field_validated": false
+}

@@ -1,0 +1,27 @@
+{
+  "id": "cell-starter",
+  "version": "0.1.0",
+  "status": "candidate",
+  "area": "CELL",
+  "route": null,
+  "equipment": null,
+  "vendor": null,
+  "recipes": [],
+  "steps": [],
+  "constraints": [],
+  "sources": [],
+  "confirmed_facts": [],
+  "unknowns": [
+    "设备清单",
+    "现场工艺路线",
+    "配方允许窗口",
+    "工艺责任人确认"
+  ],
+  "agents": [
+    "cell-bond",
+    "cell-cut",
+    "cell-inspection"
+  ],
+  "cases": [],
+  "field_validated": false
+}

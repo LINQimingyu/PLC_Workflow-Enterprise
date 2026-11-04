@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Factory process pack",
+  "type": "object",
+  "required": ["id", "version", "status", "area", "route", "equipment", "vendor", "recipes", "steps", "constraints", "sources", "confirmed_facts", "unknowns", "agents", "cases", "field_validated"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+    "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "status": {"enum": ["candidate", "evaluated", "approved", "withdrawn"]},
+    "area": {"enum": ["ARRAY", "CF", "CELL", "FA"]},
+    "route": {"type": ["string", "null"]},
+    "equipment": {"type": ["string", "null"]},
+    "vendor": {"type": ["string", "null"]},
+    "recipes": {"type": "array", "items": {"type": "object", "required": ["id", "version", "source_id"]}},
+    "steps": {"type": "array", "items": {"type": "object", "required": ["id", "entry", "action", "completion", "abnormal_recovery", "source_id"]}},
+    "constraints": {"type": "array", "items": {"type": "object", "required": ["id", "rule", "source_id", "source_version", "confirmed_by", "applicability"]}},
+    "sources": {"type": "array", "items": {"type": "object", "required": ["id", "sha256", "version", "location", "classification"]}},
+    "confirmed_facts": {"type": "array", "items": {"type": "object", "required": ["fact", "source_id", "confirmed_by"]}},
+    "unknowns": {"type": "array", "items": {"type": "string"}},
+    "agents": {"type": "array", "items": {"type": "string"}},
+    "cases": {"type": "array", "items": {"type": "object", "required": ["id", "outcome", "applicability", "source_ids"]}},
+    "field_validated": {"type": "boolean"}
+  },
+  "allOf": [{"if": {"properties": {"status": {"const": "approved"}}}, "then": {"properties": {"equipment": {"type": "string", "minLength": 1}, "route": {"type": "string", "minLength": 1}, "sources": {"minItems": 1}, "confirmed_facts": {"minItems": 1}, "cases": {"minItems": 1}}}}],
+  "additionalProperties": false
+}

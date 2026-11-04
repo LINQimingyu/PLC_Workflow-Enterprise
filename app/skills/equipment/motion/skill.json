@@ -1,0 +1,16 @@
+{
+  "id": "motion",
+  "name": "运动控制分析",
+  "version": "0.1.0",
+  "status": "candidate",
+  "category": "equipment",
+  "inputs": [
+    "轴状态、定位/原点和时序日志"
+  ],
+  "outputs": [
+    "运动时序和恢复审查"
+  ],
+  "execution": "manual_internal",
+  "eval_suite": "evals/test_registry.py",
+  "field_validated": false
+}

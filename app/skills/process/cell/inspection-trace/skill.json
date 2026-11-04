@@ -1,0 +1,16 @@
+{
+  "id": "inspection-trace",
+  "name": "CELL 检测复测追溯",
+  "version": "0.1.0",
+  "status": "candidate",
+  "category": "process/cell",
+  "inputs": [
+    "检测触发、判定、复测和追溯规范"
+  ],
+  "outputs": [
+    "检测接口验收用例"
+  ],
+  "execution": "manual_internal",
+  "eval_suite": "evals/test_registry.py",
+  "field_validated": false
+}

@@ -1,0 +1,16 @@
+{
+  "id": "test-evidence",
+  "name": "测试与证据分层",
+  "version": "0.1.0",
+  "status": "candidate",
+  "category": "verification",
+  "inputs": [
+    "编译、模拟、现场和效果记录"
+  ],
+  "outputs": [
+    "版本绑定验证清单"
+  ],
+  "execution": "manual_internal",
+  "eval_suite": "evals/test_registry.py",
+  "field_validated": false
+}

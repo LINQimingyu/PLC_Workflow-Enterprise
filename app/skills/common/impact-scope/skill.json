@@ -1,0 +1,16 @@
+{
+  "id": "impact-scope",
+  "name": "影响范围分析",
+  "version": "0.1.0",
+  "status": "candidate",
+  "category": "common",
+  "inputs": [
+    "确认需求及工程基线"
+  ],
+  "outputs": [
+    "影响矩阵与回退条件"
+  ],
+  "execution": "manual_internal",
+  "eval_suite": "evals/test_registry.py",
+  "field_validated": false
+}

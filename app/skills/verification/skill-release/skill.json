@@ -1,0 +1,16 @@
+{
+  "id": "skill-release",
+  "name": "专家与 Skill 发布",
+  "version": "0.1.0",
+  "status": "candidate",
+  "category": "verification",
+  "inputs": [
+    "候选版本、正例及失败样例"
+  ],
+  "outputs": [
+    "发布记录和能力成熟度"
+  ],
+  "execution": "manual_internal",
+  "eval_suite": "evals/test_registry.py",
+  "field_validated": false
+}

@@ -1,0 +1,16 @@
+{
+  "id": "process-map",
+  "name": "工艺步骤和设备状态映射",
+  "version": "0.1.0",
+  "status": "candidate",
+  "category": "process",
+  "inputs": [
+    "已确认路线、工艺步骤和设备状态"
+  ],
+  "outputs": [
+    "步骤状态矩阵"
+  ],
+  "execution": "manual_internal",
+  "eval_suite": "evals/test_registry.py",
+  "field_validated": false
+}

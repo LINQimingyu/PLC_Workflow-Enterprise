@@ -1,0 +1,16 @@
+{
+  "id": "knowledge-curation",
+  "name": "案例知识维护",
+  "version": "0.1.0",
+  "status": "candidate",
+  "category": "verification",
+  "inputs": [
+    "已归档案例及撤销/更新通知"
+  ],
+  "outputs": [
+    "候选知识条目与引用"
+  ],
+  "execution": "manual_internal",
+  "eval_suite": "evals/test_registry.py",
+  "field_validated": false
+}

@@ -1,0 +1,16 @@
+{
+  "product": "AgentsPLC 工厂电气工程企业平台",
+  "version": "1.0.0-enterprise-candidate",
+  "domain": "factory_enterprise",
+  "orchestration": "LangGraph",
+  "database": "PostgreSQL",
+  "initial_toolchain": "Mitsubishi Q / GX Works2",
+  "offline_first": true,
+  "production_data_imported": false,
+  "real_gx_compilation_validated": false,
+  "automatic_simulation_adapter_admitted": false,
+  "field_validated": false,
+  "benefit_observed": false,
+  "docker_runtime_validated": false,
+  "upstream_commit": "c3a0f0b1acab12964ccb6004841c8de4b26ad1d2"
+}

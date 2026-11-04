@@ -1,0 +1,16 @@
+{
+  "id": "photo-interface",
+  "name": "ARRAY 黄光流程交互",
+  "version": "0.1.0",
+  "status": "candidate",
+  "category": "process/array",
+  "inputs": [
+    "涂胶、曝光、对位流程及接口"
+  ],
+  "outputs": [
+    "接口时序与约束矩阵"
+  ],
+  "execution": "manual_internal",
+  "eval_suite": "evals/test_registry.py",
+  "field_validated": false
+}

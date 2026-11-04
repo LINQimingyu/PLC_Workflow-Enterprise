@@ -1,0 +1,16 @@
+# Cross-platform enterprise transport. Native GX worker stays on Windows.
+fastapi==0.141.1
+uvicorn==0.52.4
+filelock==3.32.7
+jsonschema==4.26.0
+langgraph==1.2.19
+langgraph-checkpoint-postgres==3.2.0
+psycopg[binary,pool]==3.3.7
+argon2-cffi==25.1.0
+openai==2.43.0
+simpy==4.1.2
+olefile==0.47
+openpyxl==3.1.5
+python-docx==1.2.0
+pypdf==6.21.4
+PyYAML==6.0.3

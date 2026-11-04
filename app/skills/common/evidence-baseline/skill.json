@@ -1,0 +1,16 @@
+{
+  "id": "evidence-baseline",
+  "name": "索资与版本基线",
+  "version": "0.1.0",
+  "status": "candidate",
+  "category": "common",
+  "inputs": [
+    "程序、图纸、点表、配方和日志"
+  ],
+  "outputs": [
+    "资料台账和待索资单"
+  ],
+  "execution": "manual_internal",
+  "eval_suite": "evals/test_registry.py",
+  "field_validated": false
+}

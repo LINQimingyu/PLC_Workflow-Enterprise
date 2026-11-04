@@ -1,0 +1,16 @@
+{
+  "id": "glass-handshake",
+  "name": "FA 玻璃搬送握手",
+  "version": "0.1.0",
+  "status": "candidate",
+  "category": "process/fa",
+  "inputs": [
+    "上下游请求/许可/占有/完成信号"
+  ],
+  "outputs": [
+    "握手时序与恢复用例"
+  ],
+  "execution": "manual_internal",
+  "eval_suite": "evals/test_registry.py",
+  "field_validated": false
+}

@@ -1,0 +1,21 @@
+# Factory extension profile. Upstream Web versions retained.
+# ST grammar is an optional separately built native dependency from web.txt;
+# without it, ST syntax validation is unavailable, never treated as passed.
+fastapi==0.141.1
+uvicorn==0.52.4
+numpy==2.3.2
+openai==2.43.0
+mcp==2.1.1
+pywinauto==0.6.9; sys_platform == "win32"
+pywin32>=310; sys_platform == "win32"
+jsonschema>=4.18,<5
+tree-sitter==0.25.2
+-r context.txt
+simpy==4.1.1
+python-multipart==0.0.33
+pypdf==6.21.4
+python-docx==1.2.0
+openpyxl==3.1.5
+pytest==9.2.0
+httpx==0.28.1
+-r gxw-test.txt

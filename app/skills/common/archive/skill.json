@@ -1,0 +1,16 @@
+{
+  "id": "archive",
+  "name": "归档前后对照",
+  "version": "0.1.0",
+  "status": "candidate",
+  "category": "common",
+  "inputs": [
+    "基线、最终候选和验证记录"
+  ],
+  "outputs": [
+    "归档包和对照报告"
+  ],
+  "execution": "manual_internal",
+  "eval_suite": "evals/test_registry.py",
+  "field_validated": false
+}

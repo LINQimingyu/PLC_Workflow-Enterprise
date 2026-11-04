@@ -1,0 +1,16 @@
+{
+  "id": "uptime",
+  "name": "稼动停机损失",
+  "version": "0.1.0",
+  "status": "candidate",
+  "category": "tt-capacity",
+  "inputs": [
+    "设备状态及故障/换型/恢复记录"
+  ],
+  "outputs": [
+    "损失树和改善优先级"
+  ],
+  "execution": "manual_internal",
+  "eval_suite": "evals/test_registry.py",
+  "field_validated": false
+}

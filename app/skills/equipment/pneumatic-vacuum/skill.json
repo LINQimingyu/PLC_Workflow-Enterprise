@@ -1,0 +1,16 @@
+{
+  "id": "pneumatic-vacuum",
+  "name": "气动与真空动作时间",
+  "version": "0.1.0",
+  "status": "candidate",
+  "category": "equipment",
+  "inputs": [
+    "阀门命令、反馈、压力及事件日志"
+  ],
+  "outputs": [
+    "动作时间和异常清单"
+  ],
+  "execution": "manual_internal",
+  "eval_suite": "evals/test_registry.py",
+  "field_validated": false
+}

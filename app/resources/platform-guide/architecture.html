@@ -1,0 +1,72 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>整体架构总览</title><style>:root{--reading-scale:1;color-scheme:light;font-family:"Segoe UI","Microsoft YaHei",sans-serif;font-size:calc(18px * var(--reading-scale));line-height:1.65;color:#19324b;background:#f3f6fa}
+*{box-sizing:border-box}body{margin:0}a{color:#235cbb;text-underline-offset:4px}button,a{touch-action:manipulation}button{font:inherit;cursor:pointer;min-height:44px;padding:.4rem .75rem;border:1px solid #bfd0e2;border-radius:8px;background:white;color:#23486d}button:hover{background:#edf4ff}button:disabled{opacity:.5;cursor:default}button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #3976df;outline-offset:3px}button[aria-selected=true]{background:#245bc3;border-color:#245bc3;color:white}
+.guide-header{background:#10253f;color:white;padding:1.2rem max(1.2rem,calc((100vw - 1280px)/2));display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}.guide-header h1{font-size:1.5rem;line-height:1.35;margin:0}.guide-header p{font-size:.9rem;color:#d3e0ef;margin:.3rem 0 0}.reading-controls{display:flex;align-items:center;gap:.45rem;flex-wrap:wrap;font-size:.9rem}.reading-controls output{font-variant-numeric:tabular-nums;min-width:3.4em;text-align:center}.guide-header .reading-controls button{border-color:#5d7695;background:#1b385a;color:white}
+.guide-bar{display:flex;gap:.65rem;align-items:center;flex-wrap:wrap;max-width:1320px;margin:auto;padding:1rem 1.2rem;background:white;border-bottom:1px solid #dbe5ef}.guide-links{display:flex;gap:.9rem;flex-wrap:wrap;align-items:center;margin-left:auto;font-size:.9rem}.guide-links a{min-height:44px;display:inline-flex;align-items:center}.guide-note{max-width:1320px;margin:auto;padding:.8rem 1.2rem;color:#4c637a;font-size:.9rem}.guide-frame{display:block;width:100%;height:1000px;border:0;background:#f3f6fa}.embedded .guide-header,.embedded .standalone-actions{display:none}
+.guide-content{max-width:1280px;margin:0 auto;padding:1.2rem}.guide-title{margin:0 0 .35rem;font-size:1.65rem;line-height:1.4}.intro{margin:0 0 1.2rem;color:#4c637a}.section-title{font-size:1.25rem;margin:1.7rem 0 .8rem}.layer{border:1px solid #cbd9e8;border-radius:14px;background:white;box-shadow:0 4px 12px #19324b05;padding:1rem 1.1rem}.layer-head{display:flex;align-items:center;gap:.65rem;margin:0 0 .85rem;font-size:1.1rem}.layer-head span,.step-number{font-size:.9rem;font-weight:700;color:#245bc3;background:#eaf1fd;border-radius:8px;min-width:2.2rem;text-align:center;padding:.25rem .4rem}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,18rem),1fr));gap:.9rem}.cards.three{grid-template-columns:repeat(auto-fit,minmax(min(100%,16rem),1fr))}.unit{background:#f6f9fd;border:1px solid #dce5ef;border-radius:10px;padding:.9rem;min-width:0}.unit h3{font-size:1.05rem;line-height:1.5;margin:0 0 .35rem}.unit p{margin:.35rem 0;font-size:.94rem}.unit .relation{color:#24579a;font-weight:600;font-size:.87rem}.connector{min-height:3.2rem;display:flex;align-items:center;justify-content:center;gap:.8rem;font-size:.9rem;color:#345c81;padding:.4rem}.connector .arrow{font-size:1.4rem;line-height:1;color:#2e7191}.authority{border-left:5px solid #d45670}.runtime{border-left:5px solid #239b82}.support{border-left:5px solid #6b63b6}.muted{color:#526a80}.module-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,19rem),1fr));gap:.75rem}.module-list article{border:1px solid #dbe4ee;background:white;border-radius:10px;padding:.9rem}.module-list h3{font-size:1rem;margin:0 0 .3rem}.module-list p{font-size:.9rem;margin:0;color:#526a80}.notice{border-left:4px solid #bd8419;background:#fff8e9;border-radius:0 8px 8px 0;padding:.85rem 1rem;margin:1.2rem 0;font-size:.95rem}.notice strong{display:block}.standalone-actions{max-width:1280px;margin:auto;padding:0 1.2rem 1.2rem}
+.workflow{list-style:none;padding:0;margin:1.2rem 0}.step{position:relative;display:grid;grid-template-columns:2.5rem minmax(0,1fr);gap:.8rem;padding:1rem;border:1px solid #cbd9e8;border-radius:12px;background:white;margin-bottom:2.4rem}.step:not(:last-child)::after{content:'↓';position:absolute;bottom:-2.1rem;left:1.65rem;height:1.7rem;color:#3d799c;font-size:1.4rem}.step-number{align-self:start}.step h2{margin:0 0 .3rem;font-size:1.15rem}.step p{margin:.4rem 0;font-size:.95rem}.step-meta{display:flex;flex-wrap:wrap;gap:.45rem .9rem;font-size:.85rem;color:#526a80;margin-bottom:.5rem}.gate{font-weight:600;color:#285ca0;background:#eef4ff;padding:0 .4rem;border-radius:4px}.checks{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,13rem),1fr));gap:.6rem;margin:.8rem 0}.check{border:1px solid #d7e2ed;border-radius:8px;padding:.7rem;background:#f7fafc;font-size:.9rem}.check strong{display:block;margin-bottom:.2rem}.repair{margin:.9rem 0 0;padding:.8rem 1rem;border:1px solid #e6c7cd;border-radius:8px;background:#fff6f7;font-size:.9rem}.repair h3{font-size:1rem;margin:0 0 .45rem}.repair ol{margin:.4rem 0;padding-left:1.4rem}.repair li{padding:.2rem 0}.repair p{font-size:.9rem}.independent{border:1px dashed #9b8bbd;background:#faf7ff}
+.article-layout{max-width:1320px;margin:1.2rem auto;display:grid;grid-template-columns:230px minmax(0,1fr);gap:1.2rem;padding:0 1.2rem}.article-layout nav{position:sticky;top:1rem;align-self:start;background:white;border:1px solid #dbe4ee;padding:.8rem;border-radius:10px;font-size:.85rem}.article-layout nav a{display:block;padding:.4rem 0}.article-layout main{min-width:0;background:white;border:1px solid #dbe4ee;border-radius:12px;padding:1.5rem}.article-layout h1{font-size:1.5rem}.article-layout h2{font-size:1.2rem;border-top:1px solid #dbe4ee;padding-top:1rem;margin-top:1.5rem}.article-layout p,.article-layout li{font-size:1rem}.table-wrap{overflow:auto}table{border-collapse:collapse;font-size:.9rem;min-width:38rem;width:100%;text-align:left}th,td{padding:.65rem;border:1px solid #dbe4ee;vertical-align:top}th{background:#edf3fa}code{font-size:.9em;overflow-wrap:anywhere}.guide-footer{max-width:1280px;margin:0 auto;padding:1rem 1.2rem 2rem;color:#526a80;font-size:.85rem}
+@media(max-width:800px){.article-layout{display:block}.article-layout nav{position:static;margin-bottom:1rem}.article-layout main{padding:1rem}.guide-links{margin-left:0;width:100%}.guide-content{padding:1rem}.guide-title{font-size:1.4rem}.step{grid-template-columns:2.2rem minmax(0,1fr);padding:.8rem;gap:.5rem}.layer{padding:.8rem}.guide-header{padding:1rem}.cards,.cards.three{grid-template-columns:1fr}}
+@media print{.reading-controls,.guide-bar,.standalone-actions{display:none}.guide-content{max-width:none;padding:0}.layer,.step,.unit{break-inside:avoid;box-shadow:none}.guide-header{background:white;color:black}.guide-header p{color:#333}.guide-footer{color:#333}.article-layout{display:block}.article-layout nav{display:none}.article-layout main{border:0}.table-wrap{overflow:visible}table{min-width:0}}
+</style></head><body><header class="guide-header"><div><h1>整体架构总览</h1><p>整体架构与工程交付</p></div><div class="reading-controls" role="group" aria-label="字体大小"><span>字体</span><button type="button" data-font-action="decrease" aria-label="缩小字体">A−</button><output data-font-output aria-label="字体比例" aria-live="polite">100%</output><button type="button" data-font-action="increase" aria-label="放大字体">A＋</button><button type="button" data-font-action="reset" aria-label="恢复默认字体">默认</button></div></header><main class="guide-content" id="main-content">
+ <h1 class="guide-title">整体架构总览</h1><p class="intro">从上往下阅读：岗位负责业务决定，业务控制服务把关，LangGraph 组织执行。</p>
+ <section class="layer"><h2 class="layer-head"><span>01</span>责任与入口</h2><div class="cards">
+  <article class="unit"><h3>实名工厂岗位</h3><p>项目负责人安排工作，工程师执行，独立审核人审查。总控可以由人担任，也可以委托 Agent 处理允许授权的工作。</p></article>
+  <article class="unit"><h3>企业工作台</h3><p>受理项目、澄清需求、上传原件、分配模块、查看任务和提交业务决定。</p></article>
+ </div></section>
+ <div class="connector"><span class="arrow" aria-hidden="true">↓</span><span>提交业务请求与实名决定</span></div>
+ <section class="layer authority"><h2 class="layer-head"><span>02</span>业务控制服务</h2><p>统一校验身份、项目权限、任务合同、制品版本、门禁与风险，控制授权、状态迁移和工程发布。</p><p class="muted">人工批准先形成业务记录，再恢复流程。Agent 不能批准自身成果、扩大授权或完成风险豁免。</p></section>
+ <div class="connector"><span class="arrow" aria-hidden="true">↓</span><span>合同与授权有效，才允许执行</span></div>
+ <section class="layer runtime"><h2 class="layer-head"><span>03</span>流程编排与模块执行</h2><div class="cards">
+  <article class="unit"><h3>LangGraph 主图与模块子图</h3><p>管理任务推进、人工等待、工具循环和检查点恢复；执行前后重新检查授权与版本。</p><p class="relation">按已授权的模块合同安排执行。</p></article>
+  <article class="unit"><h3>工作模块与可选 Agent</h3><p>模块定义工作范围、交付和审核要求。需要独立判断时加载 Agent；也可以由工程师完成。</p><p class="relation">按任务需要加载，不固定 Agent 数量。</p></article>
+ </div></section>
+ <div class="connector"><span class="arrow" aria-hidden="true">↓</span><span>按合同加载方法、调用获授权工具</span></div>
+ <section class="layer support"><h2 class="layer-head"><span>04</span>方法与工具</h2><div class="cards three">
+  <article class="unit"><p class="relation">模块加载</p><h3>Skill</h3><p>描述工作步骤、依据、判断规则与停止条件。Skill 本身不授予权限。</p></article>
+  <article class="unit"><p class="relation">LangGraph 工具循环</p><h3>受控工具与 MCP</h3><p>执行解析、计算、检索和格式校验。跨客户端复用的工具可通过 MCP 提供。</p></article>
+  <article class="unit"><p class="relation">业务服务授予工具任务</p><h3>独立厂商执行器</h3><p>在已确认的 Windows／GX 环境中操作原生工程，保存对应版本与原始日志。</p></article>
+ </div></section>
+ <h2 class="section-title">贯穿各层的数据与证据</h2><div class="cards three">
+  <article class="unit"><h3>PostgreSQL</h3><p>保存业务记录、实名权限、审批和 LangGraph 检查点。</p></article>
+  <article class="unit"><h3>版本化制品存储</h3><p>保存原件、候选、差异和验证日志，以版本与 SHA-256 绑定。</p></article>
+  <article class="unit"><h3>双层知识治理</h3><p>个人参考与生产知识分别管理，引用时检查权限、适用范围及撤回状态。</p></article>
+ </div>
+ <h2 class="section-title">五类业务模块</h2><div class="module-list">
+  <article><h3>PLC／HMI 工程</h3><p>程序、变量与 I/O、候选代码、点表、差异、回退和测试。</p></article>
+  <article><h3>故障诊断与维护</h3><p>故障假设、证据与反证、排查、维修和复验。</p></article>
+  <article><h3>电气设计与改造</h3><p>计算、选型、BOM、连接关系、图纸草稿和施工影响。</p></article>
+  <article><h3>工艺与产能改善</h3><p>FDC、TT／CT、瓶颈、动作优化、工艺窗口和改善验证。</p></article>
+  <article><h3>能耗与运行优化</h3><p>能耗基线、单位合格品能耗、待机损失及优化候选方案。</p></article>
+ </div>
+ <h2 class="section-title">共用工程保障</h2><p>工程审查与风险管理 · 真实工具验证 · 文档与工程交付 · 知识治理</p>
+ <aside class="notice"><strong>当前运行边界</strong>首期使用离线资料。本机真实 GX 编译、现场实施与效果观察仍需分别取得证据，不能由软件测试或说明图替代。</aside>
+</main>
+<div class="standalone-actions"><button type="button" data-print>打印／另存为 PDF</button></div><footer class="guide-footer">静态、编译、仿真、现场与效果证据分别记录。</footer><script>(()=>{'use strict';
+ const key='agentsplc.reading-percent.v1';
+ const clamp=v=>Number.isFinite(v)?Math.min(160,Math.max(90,Math.round(v/10)*10)):100;
+ let percent=100;
+ try{percent=clamp(Number(localStorage.getItem(key)||100));}catch{}
+ const embedded=parent!==window;
+ document.documentElement.classList.toggle('embedded',embedded);
+ function reportHeight(){if(embedded)parent.postMessage({type:'agentsplc-guide-height',height:Math.ceil(document.body.getBoundingClientRect().height)},'*');}
+ function apply(next,persist=true){percent=clamp(next);document.documentElement.style.setProperty('--reading-scale',String(percent/100));
+  document.querySelectorAll('[data-font-output]').forEach(e=>e.textContent=percent+'%');
+  document.querySelectorAll('[data-font-action=decrease]').forEach(e=>e.disabled=percent===90);
+  document.querySelectorAll('[data-font-action=increase]').forEach(e=>e.disabled=percent===160);
+  if(persist&&!embedded)try{localStorage.setItem(key,String(percent));}catch{}
+  document.querySelectorAll('iframe.guide-frame').forEach(f=>f.contentWindow?.postMessage({type:'agentsplc-reading-size',percent},'*'));
+  requestAnimationFrame(reportHeight);
+ }
+ document.querySelectorAll('[data-font-action]').forEach(button=>button.addEventListener('click',()=>apply(button.dataset.fontAction==='reset'?100:percent+(button.dataset.fontAction==='increase'?10:-10))));
+ window.addEventListener('storage',e=>{if(e.key===key)apply(Number(e.newValue||100),false);});
+ window.addEventListener('message',e=>{
+  if(embedded&&e.source===parent&&e.data?.type==='agentsplc-reading-size'&&typeof e.data.percent==='number')apply(e.data.percent,false);
+  const frame=document.querySelector('iframe.guide-frame');
+  if(frame&&e.source===frame.contentWindow&&e.data?.type==='agentsplc-guide-height'&&Number.isFinite(e.data.height)&&e.data.height>0)frame.style.height=Math.min(100000,Math.ceil(e.data.height)+4)+'px';
+ });
+ document.querySelectorAll('iframe.guide-frame').forEach(frame=>frame.addEventListener('load',()=>apply(percent,false)));
+ if(embedded){new ResizeObserver(reportHeight).observe(document.body);window.addEventListener('load',reportHeight);}
+ window.agentsPLCReading={apply,get percent(){return percent;}};
+ apply(percent,false);
+})();
+</script><script>document.querySelector('[data-print]').addEventListener('click',()=>window.print());</script></body></html>

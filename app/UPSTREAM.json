@@ -1,0 +1,10 @@
+{
+  "repository": "https://github.com/Arienax/gxworks-agent.git",
+  "commit": "c3a0f0b1acab12964ccb6004841c8de4b26ad1d2",
+  "commit_date": "2026-10-28T16:08:29Z",
+  "extension_branch": "factory/tft-lcd-workflow-v2",
+  "extension_version": "0.1.0",
+  "prepared_date": "2026-11-02",
+  "upstream_notices": ["LICENSE", "LICENSE-SCOPE.md", "NOTICE", "THIRD_PARTY_NOTICES.md"],
+  "source_of_truth": "upstream engineering/application services; factory business service is additive"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "process-review",
+  "name": "工艺约束审查",
+  "version": "0.1.0",
+  "category": "assurance",
+  "status": "candidate",
+  "execution": "manual_internal",
+  "areas": [],
+  "equipment_keywords": [],
+  "skills": [
+    "process-review"
+  ],
+  "responsibility": "约束符合性矩阵",
+  "inputs": [
+    "工艺包来源及确认方案"
+  ],
+  "outputs": [
+    "约束符合性矩阵"
+  ],
+  "tools": [
+    "knowledge.search",
+    "evidence.read"
+  ],
+  "restrictions": [
+    "无原生写入或在线 PLC 控制权限",
+    "仅返回候选与引用",
+    "缺项不得推断为确认事实"
+  ],
+  "field_validated": false,
+  "eval_suite": "evals/test_registry.py"
+}

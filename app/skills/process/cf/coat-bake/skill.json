@@ -1,0 +1,16 @@
+{
+  "id": "coat-bake",
+  "name": "CF 涂布烘烤衔接",
+  "version": "0.1.0",
+  "status": "candidate",
+  "category": "process/cf",
+  "inputs": [
+    "多次涂布烘烤路线和等待窗口"
+  ],
+  "outputs": [
+    "衔接约束与候选改善"
+  ],
+  "execution": "manual_internal",
+  "eval_suite": "evals/test_registry.py",
+  "field_validated": false
+}

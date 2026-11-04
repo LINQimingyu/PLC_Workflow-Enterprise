@@ -1,0 +1,16 @@
+{
+  "id": "minimal-patch",
+  "name": "来源绑定最小修改",
+  "version": "0.1.0",
+  "status": "candidate",
+  "category": "plc",
+  "inputs": [
+    "确认范围、不可变基线和候选改动"
+  ],
+  "outputs": [
+    "候选与差异/回退清单"
+  ],
+  "execution": "manual_internal",
+  "eval_suite": "evals/test_registry.py",
+  "field_validated": false
+}

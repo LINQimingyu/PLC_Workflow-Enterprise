@@ -1,0 +1,16 @@
+{
+  "id": "hmi",
+  "name": "HMI 操作报警与权限",
+  "version": "0.1.0",
+  "status": "candidate",
+  "category": "equipment",
+  "inputs": [
+    "画面、报警和参数需求"
+  ],
+  "outputs": [
+    "HMI 验收用例"
+  ],
+  "execution": "manual_internal",
+  "eval_suite": "evals/test_registry.py",
+  "field_validated": false
+}

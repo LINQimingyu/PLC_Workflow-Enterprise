@@ -1,0 +1,16 @@
+{
+  "id": "proposal",
+  "name": "方案与投资比较",
+  "version": "0.1.0",
+  "status": "candidate",
+  "category": "common",
+  "inputs": [
+    "候选方案、BOM、人天及收益依据"
+  ],
+  "outputs": [
+    "方案比较及决策依据"
+  ],
+  "execution": "manual_internal",
+  "eval_suite": "evals/test_registry.py",
+  "field_validated": false
+}

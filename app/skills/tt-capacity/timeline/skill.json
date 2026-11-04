@@ -1,0 +1,16 @@
+{
+  "id": "timeline",
+  "name": "动作与产线时间轴",
+  "version": "0.1.0",
+  "status": "candidate",
+  "category": "tt-capacity",
+  "inputs": [
+    "通过质量检查的开始/结束事件"
+  ],
+  "outputs": [
+    "时间轴与分布"
+  ],
+  "execution": "manual_internal",
+  "eval_suite": "evals/test_registry.py",
+  "field_validated": false
+}

@@ -1,0 +1,16 @@
+{
+  "id": "cell-bond",
+  "name": "CELL 对位成盒贴合",
+  "version": "0.1.0",
+  "status": "candidate",
+  "category": "process/cell",
+  "inputs": [
+    "实际成盒路线、对位点胶贴合顺序"
+  ],
+  "outputs": [
+    "成盒步骤与联锁审查"
+  ],
+  "execution": "manual_internal",
+  "eval_suite": "evals/test_registry.py",
+  "field_validated": false
+}

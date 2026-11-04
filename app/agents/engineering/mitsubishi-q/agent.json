@@ -1,0 +1,35 @@
+{
+  "id": "mitsubishi-q",
+  "name": "三菱 Q / GX Works2",
+  "version": "0.1.0",
+  "category": "engineering",
+  "status": "candidate",
+  "execution": "manual_internal",
+  "areas": [],
+  "equipment_keywords": [],
+  "skills": [
+    "q-source",
+    "minimal-patch"
+  ],
+  "responsibility": "能力矩阵、读写引用和缺项；候选与差异/回退清单",
+  "inputs": [
+    "Q CPU 原生工程或可选 CSV",
+    "确认范围、不可变基线和候选改动"
+  ],
+  "outputs": [
+    "能力矩阵、读写引用和缺项",
+    "候选与差异/回退清单"
+  ],
+  "tools": [
+    "knowledge.search",
+    "evidence.read",
+    "plc.inspect_csv"
+  ],
+  "restrictions": [
+    "无原生写入或在线 PLC 控制权限",
+    "仅返回候选与引用",
+    "缺项不得推断为确认事实"
+  ],
+  "field_validated": false,
+  "eval_suite": "evals/test_registry.py"
+}
